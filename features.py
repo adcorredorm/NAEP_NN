@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime
 from truncate import read_time
 
-data = pd.read_csv('processed_data/data_a_train_5m.csv')
+data = pd.read_csv('processed_data/data_a_train_30m.csv')
 ids = data.STUDENTID.unique()
 
 headers = ['ID', 'Time Spent', 'Total Questions', 'Total Helps', 'Average Time Spent']
@@ -21,11 +21,11 @@ for _id in ids:
     average = time_spent / total_questions
 
     result.append([
-        _id, str(time_spent), total_questions, total_helps, str(average)
+        _id, time_spent.total_seconds(), total_questions, total_helps, average.total_seconds()
     ])
 
 
 df = pd.DataFrame(result, columns=headers)
 df['Percentile Total Time Rank'] = df['Time Spent'].rank(pct=True)
 df['Percentile Average Time Rank'] = df['Average Time Spent'].rank(pct=True)
-df.to_csv('processed_data/features_5m.csv')
+df.to_csv('processed_data/features_30m.csv')

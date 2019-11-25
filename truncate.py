@@ -27,6 +27,6 @@ def truncate(file_path, result_path, time):
 
 if __name__ == '__main__':
     data_path = 'public_data/data_a_train.csv'
-    result_path = 'processed_data/data_a_train_5m.csv'
+    result_path = 'processed_data/data_a_train_30m.csv'
 
-    truncate(data_path, result_path, 5)
+    truncate(data_path, result_path, 30)
